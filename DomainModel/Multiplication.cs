@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 namespace MathTrainer
 {
     public class Multiplication : IExercise
@@ -13,12 +13,12 @@ namespace MathTrainer
 
         public string ExerciseText()
         {
-            return _num1.ToString() + " X " + _num2.ToString();
+            return String.Format("{0} X {1}", _num1.ToString(), _num2.ToString());
         }
 
         public string ExerciseAnswerText()
         {
-            return _num1.ToString() + " X " + _num2.ToString() + " = " + Answer().ToString();
+            return String.Format("{0} X {1} = {2}", _num1.ToString(), _num2.ToString(), Answer().ToString());
         }
 
         public decimal Answer()

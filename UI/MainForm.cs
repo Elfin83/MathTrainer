@@ -7,13 +7,13 @@ namespace MathTrainer
 {
     public interface IMainForm
     {
-        List<int> Numbers { get; }
-        List<string> MathOperations { get; }
+        
         string MathExercise { set; }
         string Answer { get; }
 
         event EventHandler CheckAnswerClick;
         event EventHandler SetExerciseText;
+        event EventHandler SettingsPresenterInitialise;
     }
     
     public partial class MainForm : Form, IMainForm
@@ -24,52 +24,10 @@ namespace MathTrainer
         }
 
         #region Fields and props
-        private List<int> _numColl;
-        private List<string> _mathOp;
+                
         enum State { Start, Exercise};
-        State currentState = State.Start; 
-
-        public List<int> Numbers
-        {
-            get
-            {
-                _numColl = new List<int>();
-                foreach (CheckBox checkBox in this.Controls.OfType<CheckBox>())
-                {
-                    if (checkBox.Name == "multCheckBox" || checkBox.Name == "divCheckBox") continue;
-                    //Перебираем все чекбоксы на форме
-                    if (checkBox.Checked)
-                    {
-                        _numColl.Add(Int32.Parse(checkBox.Text));
-                    }
-                }
-                return _numColl;
-            }
-        }
-
-        public List<string> MathOperations
-        {
-            get
-            {
-                _mathOp = new List<string>();
-                foreach (CheckBox checkBox in this.Controls.OfType<CheckBox>())
-                {
-                    if (checkBox.Checked)
-                    {
-                        if (checkBox.Name == "multCheckBox")
-                        {
-                            _mathOp.Add("Умножение");
-                        }
-                        if (checkBox.Name == "divCheckBox")
-                        {
-                            _mathOp.Add("Деление");
-                        }
-                    }
-                }
-                return _mathOp;
-            }
-        }
-
+        State currentState = State.Start;
+        
         public string MathExercise
         {
             set { exerciseLabel.Text = value; }
@@ -79,7 +37,6 @@ namespace MathTrainer
         {
             get
             {
-                //if(IsInputCorrect()) 
                 return textBox1.Text;
             }
         } 
@@ -126,11 +83,21 @@ namespace MathTrainer
             {
                 e.Handled = true;
             }            
+        }        
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsForm settingsForm = new SettingsForm();
+            if (SettingsPresenterInitialise != null)
+            {
+                SettingsPresenterInitialise(settingsForm, EventArgs.Empty);
+            }
+            settingsForm.Owner = this;
+            settingsForm.ShowDialog();
         }
 
         public event EventHandler CheckAnswerClick;
         public event EventHandler SetExerciseText;
-
-      
+        public event EventHandler SettingsPresenterInitialise;
     }
 }

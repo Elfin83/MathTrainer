@@ -8,3 +8,4 @@ C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\bin\Debug
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\bin\Debug\UI.pdb
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\obj\Debug\UI.dll
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\obj\Debug\UI.pdb
+C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\obj\Debug\MathTrainer.SettingsForm.resources

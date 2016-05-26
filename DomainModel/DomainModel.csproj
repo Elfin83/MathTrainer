@@ -43,8 +43,10 @@
     <Compile Include="Dividing.cs" />
     <Compile Include="ExerciseManager.cs" />
     <Compile Include="IExercise.cs" />
+    <Compile Include="MathOperationEnum.cs" />
     <Compile Include="Multiplication.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

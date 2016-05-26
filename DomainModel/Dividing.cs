@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 namespace MathTrainer
 {
     public class Dividing : IExercise
@@ -14,12 +14,12 @@ namespace MathTrainer
 
         public string ExerciseText()
         {
-            return _divisible.ToString() + " : " + _num2.ToString();
+            return String.Format("{0} : {1}", _divisible.ToString(), _num2.ToString());
         }
 
         public string ExerciseAnswerText()
-        {
-            return _divisible.ToString() + " : " + _num2.ToString() + " = " + _num1.ToString();
+        {           
+            return String.Format("{0} : {1} = {2}", _divisible.ToString(), _num2.ToString(), _num1.ToString());
         }
 
         public decimal Answer()

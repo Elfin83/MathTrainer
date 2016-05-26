@@ -7,15 +7,17 @@ namespace MathTrainer
     {
         private readonly IMainForm _view;
         private readonly IMessageService _messageService;
-        private Model _model = new Model();
-        IExercise ex;
+        private ExerciseManager _model = new ExerciseManager();
+        private Settings _settings = new Settings();
+        private IExercise ex;                
 
         public Presenter(IMainForm view, IMessageService messageService)
         {
-            _view = view;
+            _view = view;                   
             _messageService = messageService;      
             _view.SetExerciseText += _view_NewExerciseClick;
             _view.CheckAnswerClick += _view_CheckExerciseClick;
+            _view.SettingsPresenterInitialise += _view_SettingsClick;
         }
 
         private void _view_NewExerciseClick(object sender, EventArgs e)
@@ -37,9 +39,16 @@ namespace MathTrainer
             CreateNewExercise();
         }
 
+        //Create SettingsPresenter 
+        private void _view_SettingsClick(object sender, EventArgs e)
+        {
+           SettingsForm settingsForm = (SettingsForm)sender;
+           SettingsPresenter settingsPresenter = new SettingsPresenter(settingsForm, _settings);            
+        }
+        
         private void CreateNewExercise()
         {
-            ex = Model.ChooseExercise(_view.Numbers, _view.MathOperations);
+            ex = ExerciseManager.ChooseExercise(_settings.Numbers, _settings.MathOperations);
             _view.MathExercise = ex.ExerciseText();
         }
 
