@@ -256,11 +256,6 @@
             0,
             0,
             0});
-            this.timerDuration.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
             this.timerDuration.Name = "timerDuration";
             this.timerDuration.Size = new System.Drawing.Size(40, 20);
             this.timerDuration.TabIndex = 29;

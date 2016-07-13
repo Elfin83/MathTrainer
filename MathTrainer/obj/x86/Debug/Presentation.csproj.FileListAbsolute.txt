@@ -10,3 +10,4 @@ C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\MathTrainer\
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\MathTrainer\bin\Debug\UI.pdb
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\MathTrainer\obj\x86\Debug\MathTrainer.exe
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\MathTrainer\obj\x86\Debug\MathTrainer.pdb
+C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\MathTrainer\obj\x86\Debug\MathTrainer.rewritten

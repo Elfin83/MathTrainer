@@ -34,6 +34,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.timerBar = new System.Windows.Forms.ProgressBar();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -88,17 +89,28 @@
             this.настройкиToolStripMenuItem.Text = "Настройки";
             this.настройкиToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
+            // timerBar
+            // 
+            this.timerBar.Location = new System.Drawing.Point(57, 47);
+            this.timerBar.Maximum = 60;
+            this.timerBar.Name = "timerBar";
+            this.timerBar.Size = new System.Drawing.Size(327, 23);
+            this.timerBar.Step = 1;
+            this.timerBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.timerBar.TabIndex = 16;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 397);
+            this.Controls.Add(this.timerBar);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.exerciseLabel);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Location = new System.Drawing.Point(100, 100);
+            this.Location = new System.Drawing.Point(400, 400);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Тренажёр таблицы уменожения/деления";
@@ -115,6 +127,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
+        private System.Windows.Forms.ProgressBar timerBar;
         private System.Windows.Forms.Timer timer1;
     }
 }

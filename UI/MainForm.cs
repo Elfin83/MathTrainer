@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace MathTrainer
 {
@@ -10,8 +9,12 @@ namespace MathTrainer
         
         string MathExercise { set; }
         string Answer { get; }
+        int TimerBarMaximum { set; }
 
-        event EventHandler CheckAnswerClick;
+        void TimeBarProgress();
+        void ClearTimerBar();
+
+        event EventHandler CheckAnswer;
         event EventHandler SetExerciseText;
         event EventHandler SettingsPresenterInitialise;
     }
@@ -20,14 +23,14 @@ namespace MathTrainer
     {        
         public MainForm()
         {
-            InitializeComponent();
+            InitializeComponent();          
         }
+    
 
         #region Fields and props
-                
         enum State { Start, Exercise};
-        State currentState = State.Start;
-        
+        State currentState = State.Start;        
+
         public string MathExercise
         {
             set { exerciseLabel.Text = value; }
@@ -39,64 +42,131 @@ namespace MathTrainer
             {
                 return textBox1.Text;
             }
-        } 
-        #endregion    
+        }
+
+        public int TimerBarMaximum
+        {
+            set { timerBar.Maximum = value; }
+        }
+
+        #endregion
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (currentState == State.Start)
+            try
             {
-                if (SetExerciseText != null)
+                if (currentState == State.Exercise)
                 {
-                    SetExerciseText(this, EventArgs.Empty);
-                }
-                button1.Text = "Ответ";
-                currentState = State.Exercise;
-                textBox1.Text = "";
-                textBox1.Focus();
-            }
-            else if (currentState == State.Exercise)
-            {
-                if (CheckAnswerClick != null)
-                {
-                    CheckAnswerClick(this, EventArgs.Empty);
-                }
+                    if (CheckAnswer != null)
+                    {
+                        CheckAnswer(this, EventArgs.Empty);
+                    }
 
-                textBox1.Text = "";
-                textBox1.Focus();
+                    textBox1.Text = "";
+                    textBox1.Focus();
+                }
+                else if (currentState == State.Start)
+                {
+                    if (SetExerciseText != null)
+                    {
+                        SetExerciseText(this, EventArgs.Empty);
+                    }
+                    button1.Text = "Ответ";
+                    currentState = State.Exercise;
+                    textBox1.Text = "";
+                    textBox1.Focus();
+                }
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }                    
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char c = e.KeyChar;
-            if (c == 13) //Enter
+            try
             {
-                if (CheckAnswerClick != null)
+                char c = e.KeyChar;
+                if (c == 13) //Enter
                 {
-                    CheckAnswerClick(this, EventArgs.Empty);
+                    if (CheckAnswer != null)
+                    {
+                        CheckAnswer(this, EventArgs.Empty);
+                    }
+                    textBox1.Text = "";
+                    textBox1.Focus();
                 }
-                textBox1.Text = "";
-                textBox1.Focus();
+                if (!(Char.IsDigit(c) || c == 8)) //numbers or backspace
+                {
+                    e.Handled = true;
+                }
             }
-            if (!(Char.IsDigit(c) || c == 8)) //numbers or backspace
+            catch (Exception ex)
             {
-                e.Handled = true;
+
+                MessageBox.Show(ex.Message);
             }            
         }        
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SettingsForm settingsForm = new SettingsForm();
-            if (SettingsPresenterInitialise != null)
+            try
             {
-                SettingsPresenterInitialise(settingsForm, EventArgs.Empty);
+                SettingsForm settingsForm = new SettingsForm();
+                if (SettingsPresenterInitialise != null)
+                {
+                    SettingsPresenterInitialise(settingsForm, EventArgs.Empty);
+                }
+                settingsForm.Owner = this;
+                settingsForm.ShowDialog();
             }
-            settingsForm.Owner = this;
-            settingsForm.ShowDialog();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }            
         }
 
-        public event EventHandler CheckAnswerClick;
+        public void TimeBarProgress()
+        {
+            try
+            {
+                if (timerBar.InvokeRequired)
+                {
+                    timerBar.Invoke((Action)(() => timerBar.PerformStep()));                    
+                }
+                else
+                {
+                    timerBar.PerformStep();                   
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void ClearTimerBar()
+        {
+            try
+            {
+                if (timerBar.InvokeRequired)
+                {
+                    timerBar.Invoke((Action)(() => timerBar.Value = 0));
+                }
+                else
+                {
+                    timerBar.Value = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+      
+        public event EventHandler CheckAnswer;
         public event EventHandler SetExerciseText;
         public event EventHandler SettingsPresenterInitialise;
     }

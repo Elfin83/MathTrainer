@@ -36,7 +36,7 @@
             // isCorrectAnswerLabel
             // 
             this.isCorrectAnswerLabel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.isCorrectAnswerLabel.Font = new System.Drawing.Font("Tahoma", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.isCorrectAnswerLabel.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.isCorrectAnswerLabel.ForeColor = System.Drawing.Color.LimeGreen;
             this.isCorrectAnswerLabel.Location = new System.Drawing.Point(0, 0);
             this.isCorrectAnswerLabel.Name = "isCorrectAnswerLabel";
@@ -54,7 +54,6 @@
             this.exerciseAnswerLabel.Name = "exerciseAnswerLabel";
             this.exerciseAnswerLabel.Size = new System.Drawing.Size(284, 124);
             this.exerciseAnswerLabel.TabIndex = 1;
-            this.exerciseAnswerLabel.Text = "1 Х 1 = 1";
             this.exerciseAnswerLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // button1

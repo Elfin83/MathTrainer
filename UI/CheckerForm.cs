@@ -13,6 +13,8 @@ namespace MathTrainer
     {
         string IsCorrectLabelText { set; }
         string IsCorrectLabelColor { set; }
+        Font IsCorrectLableFont { set; }
+        Size IsCorrectLableSize { set; }
         string ExerciseAnswer { set; }
     }
 
@@ -32,6 +34,16 @@ namespace MathTrainer
         public string IsCorrectLableColor
         {
             set { isCorrectAnswerLabel.ForeColor = Color.FromName(value); }
+        }
+
+        public Font IsCorrectLableFont
+        {
+            set { isCorrectAnswerLabel.Font = value; }
+        }
+
+        public Size IsCorrectLableSize
+        {
+            set { isCorrectAnswerLabel.Size = value; }
         }
 
         public string ExerciseAnswer

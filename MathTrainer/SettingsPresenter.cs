@@ -4,27 +4,31 @@ namespace MathTrainer
 {
     class SettingsPresenter
     {
-        private readonly SettingsForm _view;
+        private readonly SettingsForm _settingsView;
         private Settings _settings;
 
         public SettingsPresenter(SettingsForm view, Settings settings)
         {            
-            _view = view;
+            _settingsView = view;
             _settings = settings;
-            _view.GetSettings += _settings_LoadSettingsForm;
-            _view.SetSettings += _settings_SaveSettingsClick;
+            _settingsView.GetSettings += _settings_LoadSettingsForm;
+            _settingsView.SetSettings += _settings_SaveSettingsClick;
         }
 
         private void _settings_LoadSettingsForm(object sender, EventArgs e)
         {            
-            _view.Numbers = _settings.Numbers;
-            _view.MathOperations = _settings.MathOperations.ConvertAll(new Converter<MathOperations, string>(MathOpToString));
+            _settingsView.Numbers = _settings.Numbers;
+            _settingsView.MathOperations = _settings.MathOperations.ConvertAll(new Converter<MathOperations, string>(MathOpToString));
+            _settingsView.TimerIsOn = _settings.TimerIsOn;
+            _settingsView.TimeLimit = _settings.TimeLimit;      
         }
 
         private void _settings_SaveSettingsClick(object sender, EventArgs e)
         {           
-            _settings.Numbers = _view.Numbers;                     
-            _settings.MathOperations = _view.MathOperations.ConvertAll(new Converter<string, MathOperations>(StringToMathOp));
+            _settings.Numbers = _settingsView.Numbers;                     
+            _settings.MathOperations = _settingsView.MathOperations.ConvertAll(new Converter<string, MathOperations>(StringToMathOp));
+            _settings.TimerIsOn = _settingsView.TimerIsOn;
+            _settings.TimeLimit = _settingsView.TimeLimit;
         }
 
         private string MathOpToString(MathOperations mathOp)

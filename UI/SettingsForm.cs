@@ -9,22 +9,21 @@ namespace MathTrainer
     {
         List<int> Numbers { get; set; }
         List<string> MathOperations { get; set; }
+        bool TimerIsOn { get; set; }
+        double TimeLimit { get; set; }
 
         event EventHandler SetSettings;
         event EventHandler GetSettings;
     }
     public partial class SettingsForm : Form
     {
-        public SettingsForm()
-        {          
-            InitializeComponent();
-            _checkBoxColl = this.Controls.OfType<CheckBox>();            
-        }
-
         #region Fields and props
         private List<int> _numColl = new List<int> { };
         private List<string> _mathOp = new List<string> { };
-        private IEnumerable <CheckBox> _checkBoxColl;
+        private bool _timerIsOn = true;
+        private double _timeLimit = 5;
+
+        private IEnumerable<CheckBox> _checkBoxColl;         
 
         public List<int> Numbers
         {
@@ -38,11 +37,11 @@ namespace MathTrainer
                     //Перебираем все чекбоксы с цифрами на форме
                     if (checkBox.Checked)
                     {
-                        _numColl.Add(Int32.Parse(checkBox.Text));
+                        _numColl.Add(int.Parse(checkBox.Text));
                     }
                     else
                     {
-                        _numColl.Remove(Int32.Parse(checkBox.Text));
+                        _numColl.Remove(int.Parse(checkBox.Text));
                     }
                 }                
                 return _numColl;
@@ -79,7 +78,42 @@ namespace MathTrainer
                 _mathOp = value;
             }
         }
+
+        public bool TimerIsOn
+        {
+            get
+            {
+                return timerIsOn.Checked;
+            }
+            set
+            {
+                _timerIsOn = value;                
+            }
+        }
+
+        public double TimeLimit
+        {
+            get
+            {
+                if (timerIsOn.Checked)
+                {
+                    _timeLimit = (double)timerDuration.Value;
+                }
+                return _timeLimit;
+            }
+
+            set
+            {
+                timerDuration.Value = (decimal)value;
+            }
+        }
         #endregion        
+
+        public SettingsForm()
+        {
+            InitializeComponent();
+            _checkBoxColl = this.Controls.OfType<CheckBox>();
+        }
 
         private void saveButton1_Click(object sender, EventArgs e)
         {            
@@ -110,12 +144,12 @@ namespace MathTrainer
 
         private void SetContolsByValue()
         {
-            foreach (var checkBox in _checkBoxColl)
+           foreach (var checkBox in _checkBoxColl)
             {
                 string checkBoxTxt = checkBox.Text;
                 
                 if (_numColl.Exists(x => x.ToString() == checkBoxTxt) ||
-                    _mathOp.Exists(x => x.ToString() == checkBoxTxt))
+                    _mathOp.Exists(x => x.ToString() == checkBoxTxt))  
                 {
                     checkBox.Checked = true;
                 }
@@ -123,7 +157,10 @@ namespace MathTrainer
                 {
                     checkBox.Checked = false;
                 }
-            }           
+            }
+
+            timerIsOn.Checked = _timerIsOn;
+            timerDuration.Value = (decimal)_timeLimit;
         }
 
         public event EventHandler SetSettings;

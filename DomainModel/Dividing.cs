@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace MathTrainer
 {
     public class Dividing : IExercise
@@ -6,7 +7,7 @@ namespace MathTrainer
         private int _num1 = 0, _num2 = 0, _divisible = 0;
 
         public Dividing(int num1, int num2)
-        {
+        {            
             _num1 = num1;
             _num2 = num2;
             _divisible = _num1 * _num2;
