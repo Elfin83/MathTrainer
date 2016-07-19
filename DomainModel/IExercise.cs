@@ -4,8 +4,8 @@ namespace MathTrainer
 {
     public interface IExercise
     {        
-        string ExerciseText();
+        string ToString();
         string ExerciseAnswerText();
-        decimal Answer();
+        string Answer();
     }
 }

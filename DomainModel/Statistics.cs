@@ -1,12 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DomainModel
+﻿namespace MathTrainer
 {
-    class Statistics
+    public class Statistics
     {
+        private static int _answersCount,
+            _correctAnswersCount;
+
+        public static int AnswersCount
+        {
+            get { return _answersCount; }
+            set { _answersCount = value; }
+        }
+
+        public static int CorrectAnswersCount
+        {
+            get { return _correctAnswersCount; }
+            set { _correctAnswersCount = value; }
+        }
     }
 }

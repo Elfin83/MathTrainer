@@ -2,5 +2,4 @@ C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\DomainModel\
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\DomainModel\bin\Debug\DomainModel.pdb
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\DomainModel\obj\Debug\DomainModel.dll
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\DomainModel\obj\Debug\DomainModel.pdb
-C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\DomainModel\obj\Debug\DomainModel.csprojResolveAssemblyReference.cache
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\DomainModel\obj\Debug\DomainModel.rewritten

@@ -13,6 +13,7 @@ namespace MathTrainer
 
         void TimeBarProgress();
         void ClearTimerBar();
+        void SetStatusStripText(int answerCount, int correctAnswerCount);
 
         event EventHandler CheckAnswer;
         event EventHandler SetExerciseText;
@@ -33,7 +34,14 @@ namespace MathTrainer
 
         public string MathExercise
         {
-            set { exerciseLabel.Text = value; }
+            set
+            {
+                if (exerciseLabel.InvokeRequired)
+                {
+                    exerciseLabel.Invoke((Action)(() => exerciseLabel.Text = value));
+                }
+                else exerciseLabel.Text = value;
+            }
         }
 
         public string Answer
@@ -46,7 +54,14 @@ namespace MathTrainer
 
         public int TimerBarMaximum
         {
-            set { timerBar.Maximum = value; }
+            set
+            {
+                if (timerBar.InvokeRequired)
+                {
+                    timerBar.Invoke((Action)(() => timerBar.Maximum = value));
+                }
+                else timerBar.Maximum = value;
+            }
         }
 
         #endregion
@@ -105,7 +120,6 @@ namespace MathTrainer
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }            
         }        
@@ -115,10 +129,12 @@ namespace MathTrainer
             try
             {
                 SettingsForm settingsForm = new SettingsForm();
+                
                 if (SettingsPresenterInitialise != null)
                 {
                     SettingsPresenterInitialise(settingsForm, EventArgs.Empty);
                 }
+                
                 settingsForm.Owner = this;
                 settingsForm.ShowDialog();
             }
@@ -159,6 +175,26 @@ namespace MathTrainer
                 {
                     timerBar.Value = 0;
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void SetStatusStripText(int answerCount, int correctAnswerCount)
+        {
+            try
+            {
+                var p = ((double)correctAnswerCount / answerCount) * 100;               
+                string statusStripInfo = String.Format("Всего выполнено: {0}, Процент верных ответов: {1}",
+                    answerCount.ToString(),  p.ToString("0.##"));
+
+                if (statusStrip1.InvokeRequired)
+                {
+                    statusStrip1.Invoke((Action)(() => toolStripStatusLabel1.Text = statusStripInfo));
+                }
+                else toolStripStatusLabel1.Text = statusStripInfo;
             }
             catch (Exception ex)
             {

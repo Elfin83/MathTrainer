@@ -8,9 +8,8 @@ namespace MathTrainer
     {
         private readonly IMainForm _view;
         private readonly IMessageService _messageService;  
-        private Settings _settings = new Settings();
+        private Settings _settings = new Settings();        
         private IExercise ex;
-        //private bool timeIsUp = false;
 
         public Presenter(IMainForm view, IMessageService messageService)
         {
@@ -27,46 +26,45 @@ namespace MathTrainer
         }
 
         private void _view_NewExerciseClick(object sender, EventArgs e)
-        {         
-            CreateNewExercise();
-
-            _view.TimerBarMaximum = (int)_settings.TimeLimit;
-            TimeManager.StartTimer(_settings.TimeLimit);
+        {
+            ViewNewExercise();
         }
 
         private void _view_CheckExercise(object sender, EventArgs e)
-        {
-            //Stop timer
-            TimeManager.StopTimer();
-
+        {           
             if (!IsInputCorrect(_view.Answer))
             {
                 _messageService.ShowError();
                 return;
             }
 
+            //Stop timer
+            TimeManager.StopTimer();
+            //Add answer in statistics
+            Statistics.AnswersCount++;
+
             if (IsAnswerCorrect())
             {
-                _messageService.CorrectAnswerMessage(ex.Answer().ToString());
+                _messageService.CorrectAnswerMessage(ex.Answer());
+                //Add answer in statistics
+                Statistics.CorrectAnswersCount ++;                
             }
             else
             {
-                _messageService.WrongAnswerMessage(ex.Answer().ToString());
-            }            
-
-            //Display new exercise
-            CreateNewExercise();
-
-            //Start timer                   
-            _view.ClearTimerBar();
-            _view.TimerBarMaximum = (int)_settings.TimeLimit;
-            TimeManager.StartTimer(_settings.TimeLimit);            
+                _messageService.WrongAnswerMessage(ex.Answer());
+            }
+            
+            ViewNewExercise();      
         }
 
         private void _time_IsUp(object sender, EventArgs e)
         {           
             TimeManager.StopTimer();
-            _messageService.TimeIsUpMessage(ex.Answer().ToString());
+            //Add answer in statistics
+            Statistics.AnswersCount++;
+            _messageService.TimeIsUpMessage(ex.Answer());
+            
+            ViewNewExercise();
         }
 
         private void _next_Tick(object sender, EventArgs e)
@@ -81,15 +79,9 @@ namespace MathTrainer
             SettingsPresenter settingsPresenter = new SettingsPresenter(settingsForm, _settings);
         }
 
-        private void CreateNewExercise()
-        {
-            ex = ExerciseManager.ChooseExercise(_settings.Numbers, _settings.MathOperations);
-            _view.MathExercise = ex.ExerciseText();
-        }
-
         private bool IsAnswerCorrect()
         {
-            string exerciseAnswer = ex.Answer().ToString();
+            string exerciseAnswer = ex.Answer();
             return (_view.Answer == exerciseAnswer);
         }
 
@@ -100,6 +92,21 @@ namespace MathTrainer
                 return false;
             }
             return true;
+        }
+
+        private void ViewNewExercise()
+        {
+            ex = ExerciseManager.ChooseExercise(_settings.Numbers, _settings.MathOperations);
+            _view.MathExercise = ex.ToString();
+            _view.ClearTimerBar();
+
+            if (_settings.TimerIsOn)
+            {                
+                _view.TimerBarMaximum = (int)_settings.TimeLimit;
+                TimeManager.StartTimer(_settings.TimeLimit);
+            }
+            //Refresh StatisticsInfo
+            _view.SetStatusStripText(Statistics.AnswersCount, Statistics.CorrectAnswersCount);
         }
     }
 }

@@ -16,21 +16,21 @@ namespace MathTrainer.Tests
         [TestMethod()]
         public void AnswerTest()
         {
-            Assert.AreEqual(6, instance.Answer());
+            Assert.AreEqual("6", instance.Answer());
         }
 
         [TestMethod()]
         public void ExerciseTextTest()
         {
-            string expected = "3 X 2";
-            string exText = instance.ExerciseText();
+            string expected = "2 X 3";
+            string exText = instance.ToString();
             Assert.AreEqual(expected, exText, "Неверный формат задания.");
         }
 
         [TestMethod()]
         public void ExerciseAnswerTextTest()
         {
-            string expected = "3 X 2 = 6";
+            string expected = "2 X 3 = 6";
             string exText = instance.ExerciseAnswerText();
             Assert.AreEqual(expected, exText, "Неверный формат ответа.");
         }

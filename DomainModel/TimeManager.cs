@@ -7,10 +7,10 @@ namespace MathTrainer
     public class TimeManager
     {
         public static Timer _timer;        
-        private static double _tick;
-        private static double _timeLimit;
+        private static decimal _tick;
+        private static decimal _timeLimit;
         
-        public double TimeLimit
+        public decimal TimeLimit
         {
             set
             {
@@ -18,18 +18,19 @@ namespace MathTrainer
             }
         }  
 
-        public static void StartTimer(double timeLimit)
+        public static void StartTimer(decimal timeLimit)
         {
-            Contract.Requires<ArgumentOutOfRangeException>(timeLimit > 0, "timeLimit");
-            _timeLimit = timeLimit;
+            Contract.Requires<ArgumentOutOfRangeException>(timeLimit > 0, "timeLimit");            
+            _timeLimit = timeLimit;            
             _tick = 0;
             _timer = new Timer(TimerTick, null, 1000, 1000);           
         }
         
         public static void StopTimer()
         {
-            Contract.Requires<ArgumentNullException>(_timer != null,"_timer");
-            _timer.Dispose();
+            //Contract.Requires<ArgumentNullException>(_timer != null,"_timer");
+            if (_timer == null) { return; }
+            else _timer.Dispose();
         }
 
         private static void TimerTick(object data)

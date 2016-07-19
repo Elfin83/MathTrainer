@@ -17,7 +17,7 @@ namespace MathTrainer.Tests
         public void ExerciseTextTest()
         {
             string expected = "6 : 2";
-            string exText = instance.ExerciseText();
+            string exText = instance.ToString();
             Assert.AreEqual(expected, exText, "Неверный формат задания.");
         }
 
@@ -32,7 +32,7 @@ namespace MathTrainer.Tests
         [TestMethod()]
         public void AnswerTest()
         {
-            Assert.AreEqual(3, instance.Answer(), "Неверный формат ответа.");
+            Assert.AreEqual("3", instance.Answer(), "Неверный ответ.");
         }
     }
 }

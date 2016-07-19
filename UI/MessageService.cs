@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace MathTrainer
@@ -31,7 +32,15 @@ namespace MathTrainer
             chForm.IsCorrectLabelText = "Время вышло.\nОтвет:";
             chForm.IsCorrectLableColor = "Red";
             chForm.ExerciseAnswer = exerciseAnswer;
-            chForm.ShowDialog();
+            //form initializing from other stream
+            if (_ownerForm.InvokeRequired)
+            {
+                _ownerForm.Invoke((Action)(() => chForm.ShowDialog(_ownerForm)));
+            }
+            else
+            {
+                chForm.ShowDialog(_ownerForm);
+            }            
         }
 
         public void WrongAnswerMessage(string exerciseAnswer)
@@ -49,8 +58,7 @@ namespace MathTrainer
             chForm.IsCorrectLabelText = "Верно!";
             chForm.IsCorrectLableFont = new Font("Tahoma", 36);
             chForm.IsCorrectLableSize = new Size(284, 150);
-            chForm.IsCorrectLableColor = "LimeGreen";
-            
+            chForm.IsCorrectLableColor = "LimeGreen";            
             chForm.ShowDialog();
         }
 

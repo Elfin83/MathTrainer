@@ -13,7 +13,7 @@ namespace MathTrainer
             _divisible = _num1 * _num2;
         }
 
-        public string ExerciseText()
+        public override string ToString()
         {
             return String.Format("{0} : {1}", _divisible.ToString(), _num2.ToString());
         }
@@ -23,9 +23,9 @@ namespace MathTrainer
             return String.Format("{0} : {1} = {2}", _divisible.ToString(), _num2.ToString(), _num1.ToString());
         }
 
-        public decimal Answer()
+        public string Answer()
         {
-            return _num1;
+            return _num1.ToString();
         }
     }
 }

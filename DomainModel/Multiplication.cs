@@ -11,19 +11,20 @@ namespace MathTrainer
             _num2 = num2;
         }
 
-        public string ExerciseText()
+        public override string ToString()
         {
-            return String.Format("{0} X {1}", _num1.ToString(), _num2.ToString());
+            return String.Format("{0} X {1}", _num2.ToString(), _num1.ToString());
         }
 
         public string ExerciseAnswerText()
         {
-            return String.Format("{0} X {1} = {2}", _num1.ToString(), _num2.ToString(), Answer().ToString());
+            return String.Format("{0} X {1} = {2}", _num2.ToString(), _num1.ToString(), Answer());
         }
 
-        public decimal Answer()
+        public string Answer()
         {
-            return _num1 * _num2;
+            decimal answer = _num1 * _num2;
+            return answer.ToString();
         }
     }
 }

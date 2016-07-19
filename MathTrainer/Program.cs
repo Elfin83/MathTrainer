@@ -14,7 +14,8 @@ namespace MathTrainer
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainForm view = new MainForm();
-            MessageService messageService = new MessageService(view);  
+            MessageService messageService = new MessageService(view);
+            
             Presenter presenter = new Presenter(view, messageService);
             Application.Run(view);
         }

@@ -2,7 +2,6 @@ C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\obj\Debug
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\obj\Debug\MathTrainer.MainForm.resources
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\obj\Debug\UI.Properties.Resources.resources
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\obj\Debug\UI.csproj.GenerateResource.Cache
-C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\bin\Debug\UI.dll.config
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\bin\Debug\UI.dll
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\UI\bin\Debug\UI.pdb

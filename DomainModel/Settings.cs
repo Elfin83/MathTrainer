@@ -8,7 +8,7 @@ namespace MathTrainer
 
         private List<int> _numColl = new List<int>() {0,1,2,3,4,5,6,7,8,9};
         private List<MathOperations> _mathOp = new List<MathOperations>() {MathTrainer.MathOperations.Делить, MathTrainer.MathOperations.Умножать};
-        private double _timeLimit = 5;
+        private decimal _timeLimit = 5;
         private bool _timerIsOn = true;
 
         public List<int> Numbers
@@ -45,7 +45,7 @@ namespace MathTrainer
                 _timerIsOn = value;
             }
         }
-        public double TimeLimit
+        public decimal TimeLimit
         {
             get
             {
@@ -55,8 +55,7 @@ namespace MathTrainer
             {
                 _timeLimit = value;
             }
-        }
-            
+        }           
         #endregion
     }
 }

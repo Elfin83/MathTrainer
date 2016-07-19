@@ -10,7 +10,7 @@ namespace MathTrainer
         List<int> Numbers { get; set; }
         List<string> MathOperations { get; set; }
         bool TimerIsOn { get; set; }
-        double TimeLimit { get; set; }
+        decimal TimeLimit { get; set; }
 
         event EventHandler SetSettings;
         event EventHandler GetSettings;
@@ -20,8 +20,6 @@ namespace MathTrainer
         #region Fields and props
         private List<int> _numColl = new List<int> { };
         private List<string> _mathOp = new List<string> { };
-        private bool _timerIsOn = true;
-        private double _timeLimit = 5;
 
         private IEnumerable<CheckBox> _checkBoxColl;         
 
@@ -87,24 +85,20 @@ namespace MathTrainer
             }
             set
             {
-                _timerIsOn = value;                
+                timerIsOn.Checked = value;                
             }
         }
 
-        public double TimeLimit
+        public decimal TimeLimit
         {
             get
             {
-                if (timerIsOn.Checked)
-                {
-                    _timeLimit = (double)timerDuration.Value;
-                }
-                return _timeLimit;
+                return timerDuration.Value;
             }
 
             set
             {
-                timerDuration.Value = (decimal)value;
+                timerDuration.Value = value;
             }
         }
         #endregion        
@@ -112,7 +106,7 @@ namespace MathTrainer
         public SettingsForm()
         {
             InitializeComponent();
-            _checkBoxColl = this.Controls.OfType<CheckBox>();
+            _checkBoxColl = this.Controls.OfType<CheckBox>().Where(element => element != timerIsOn);
         }
 
         private void saveButton1_Click(object sender, EventArgs e)
@@ -149,7 +143,7 @@ namespace MathTrainer
                 string checkBoxTxt = checkBox.Text;
                 
                 if (_numColl.Exists(x => x.ToString() == checkBoxTxt) ||
-                    _mathOp.Exists(x => x.ToString() == checkBoxTxt))  
+                    _mathOp.Exists(x => x.ToString() == checkBoxTxt)) 
                 {
                     checkBox.Checked = true;
                 }
@@ -158,9 +152,6 @@ namespace MathTrainer
                     checkBox.Checked = false;
                 }
             }
-
-            timerIsOn.Checked = _timerIsOn;
-            timerDuration.Value = (decimal)_timeLimit;
         }
 
         public event EventHandler SetSettings;
@@ -175,6 +166,11 @@ namespace MathTrainer
             }
 
             SetContolsByValue();
+        }
+
+        private void timerIsOn_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

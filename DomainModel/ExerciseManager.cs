@@ -6,8 +6,12 @@ namespace MathTrainer
 {
     public class ExerciseManager
     {
+        private static IExercise _ex;
+        public static Dictionary<string, IExercise> Exercises { get; set; }
+
         public static IExercise ChooseExercise(List<int> numbers, List<MathOperations> operationTypes)
         {
+            #region Contracts
             Contract.Requires<ArgumentNullException>(numbers != null, "numbers");
             Contract.Requires<ArgumentNullException>(operationTypes != null, "operationTypes");
             Contract.Requires<ArgumentOutOfRangeException>(numbers.Count > 0, "numbers");
@@ -15,9 +19,10 @@ namespace MathTrainer
             Contract.Requires<ArgumentOutOfRangeException>(numbers.Count <= 10, "numbers");
             Contract.Requires<ArgumentOutOfRangeException>(operationTypes.Count <= 2, "operationTypes");
             Contract.ForAll(operationTypes, i => i != MathOperations.None);
-            //Перенести в UnitTests
+            //Only unique values
             Contract.Requires(operationTypes.Count == operationTypes.Distinct().Count());
             Contract.Requires(numbers.Count == numbers.Distinct().Count());
+            #endregion
 
             IExercise exercise = null;
             var rndm = new Random();
