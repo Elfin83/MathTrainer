@@ -59,17 +59,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DomainModel\DomainModel.csproj">
-      <Project>{dfe40456-25ef-4e3d-9af0-4e9d163c3bf7}</Project>
-      <Name>DomainModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MathTrainer\Presentation.csproj">
       <Project>{c24cba26-1536-474e-adc2-b488f97ba014}</Project>
       <Name>Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UI\UI.csproj">
-      <Project>{ebab0d7b-22ac-48e4-ae06-da5ff0e7db7f}</Project>
-      <Name>UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

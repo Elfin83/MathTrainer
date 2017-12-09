@@ -1,23 +1,20 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 
-
 namespace MathTrainer
 {
     public class Presenter
     {
         private readonly IMainForm _view;
-        private readonly IMessageService _messageService;  
-        private Settings _settings = new Settings();        
+        private readonly IMessageService _messageService;                
         private IExercise ex;
+        private Settings _settings;
 
-        public Presenter(IMainForm view, IMessageService messageService)
+        public Presenter(IMainForm view, Settings settings, IMessageService messageService)
         {
-            Contract.Requires<ArgumentNullException>(view != null, "view");
-            Contract.Requires<ArgumentNullException>(messageService != null, "messageService");
             _view = view;
             _messageService = messageService;
-
+            _settings = settings;
             _view.SetExerciseText += _view_NewExerciseClick;
             _view.CheckAnswer += _view_CheckExercise;
             _view.SettingsPresenterInitialise += _view_SettingsClick;
@@ -27,7 +24,7 @@ namespace MathTrainer
 
         private void _view_NewExerciseClick(object sender, EventArgs e)
         {
-            ViewNewExercise();
+            //ViewNewExercise();
         }
 
         private void _view_CheckExercise(object sender, EventArgs e)
@@ -45,16 +42,16 @@ namespace MathTrainer
 
             if (IsAnswerCorrect())
             {
-                _messageService.CorrectAnswerMessage(ex.Answer());
+                _messageService.CorrectAnswerMessage(ex.Answer().ToString());
                 //Add answer in statistics
                 Statistics.CorrectAnswersCount ++;                
             }
             else
             {
-                _messageService.WrongAnswerMessage(ex.Answer());
+                _messageService.WrongAnswerMessage(ex.Answer().ToString());
             }
             
-            ViewNewExercise();      
+            //ViewNewExercise();      
         }
 
         private void _time_IsUp(object sender, EventArgs e)
@@ -62,9 +59,9 @@ namespace MathTrainer
             TimeManager.StopTimer();
             //Add answer in statistics
             Statistics.AnswersCount++;
-            _messageService.TimeIsUpMessage(ex.Answer());
+            _messageService.TimeIsUpMessage(ex.Answer().ToString());
             
-            ViewNewExercise();
+            //ViewNewExercise();
         }
 
         private void _next_Tick(object sender, EventArgs e)
@@ -80,9 +77,8 @@ namespace MathTrainer
         }
 
         private bool IsAnswerCorrect()
-        {
-            string exerciseAnswer = ex.Answer();
-            return (_view.Answer == exerciseAnswer);
+        {            
+            return (_view.Answer == ex.Answer().ToString());
         }
 
         private bool IsInputCorrect(string answer)
@@ -94,14 +90,15 @@ namespace MathTrainer
             return true;
         }
 
-        private void ViewNewExercise()
+        public void ViewNewExercise()
         {
-            ex = ExerciseManager.ChooseExercise(_settings.Numbers, _settings.MathOperations);
+            ExerciseManager exManager = new ExerciseManager(_settings.Numbers, _settings.MathOperations);
+            ex = exManager.ChooseExercise();
             _view.MathExercise = ex.ToString();
             _view.ClearTimerBar();
 
             if (_settings.TimerIsOn)
-            {                
+            {
                 _view.TimerBarMaximum = (int)_settings.TimeLimit;
                 TimeManager.StartTimer(_settings.TimeLimit);
             }

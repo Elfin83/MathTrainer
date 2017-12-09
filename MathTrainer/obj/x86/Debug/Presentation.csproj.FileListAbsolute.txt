@@ -11,3 +11,14 @@ C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\MathTrainer\
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\MathTrainer\obj\x86\Debug\MathTrainer.exe
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\MathTrainer\obj\x86\Debug\MathTrainer.pdb
 C:\Users\Nataliya\Documents\Visual Studio 2010\Projects\MathTrainer\MathTrainer\obj\x86\Debug\MathTrainer.rewritten
+C:\Users\nzheleznova\Documents\Visual Studio 2013\Projects\MathTrainer-master\MathTrainer\bin\Debug\MathTrainer.exe.config
+C:\Users\nzheleznova\Documents\Visual Studio 2013\Projects\MathTrainer-master\MathTrainer\obj\x86\Debug\MathTrainer.exe
+C:\Users\nzheleznova\Documents\Visual Studio 2013\Projects\MathTrainer-master\MathTrainer\obj\x86\Debug\MathTrainer.pdb
+C:\Users\nzheleznova\Documents\Visual Studio 2013\Projects\MathTrainer-master\MathTrainer\obj\x86\Debug\Presentation.csprojResolveAssemblyReference.cache
+C:\Users\nzheleznova\Documents\Visual Studio 2013\Projects\MathTrainer-master\MathTrainer\obj\x86\Debug\MathTrainer.Properties.Resources.resources
+C:\Users\nzheleznova\Documents\Visual Studio 2013\Projects\MathTrainer-master\MathTrainer\obj\x86\Debug\MathTrainer.UI.CheckerForm.resources
+C:\Users\nzheleznova\Documents\Visual Studio 2013\Projects\MathTrainer-master\MathTrainer\obj\x86\Debug\MathTrainer.UI.MainForm.resources
+C:\Users\nzheleznova\Documents\Visual Studio 2013\Projects\MathTrainer-master\MathTrainer\obj\x86\Debug\MathTrainer.UI.SettingsForm.resources
+C:\Users\nzheleznova\Documents\Visual Studio 2013\Projects\MathTrainer-master\MathTrainer\obj\x86\Debug\Presentation.csproj.GenerateResource.Cache
+C:\Users\nzheleznova\Documents\Visual Studio 2013\Projects\MathTrainer-master\MathTrainer\bin\Debug\MathTrainer.exe
+C:\Users\nzheleznova\Documents\Visual Studio 2013\Projects\MathTrainer-master\MathTrainer\bin\Debug\MathTrainer.pdb
